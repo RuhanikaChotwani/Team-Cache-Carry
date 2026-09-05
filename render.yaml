@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: ibvap-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.4
+      - key: IBVAP_MOCK_AI
+        value: "true"
+      - key: IBVAP_ANALYSIS_FPS
+        value: "2"
+      - key: FCR_MATCH_THRESHOLD
+        value: "0.55"

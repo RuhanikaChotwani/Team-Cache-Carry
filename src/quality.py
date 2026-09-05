@@ -86,7 +86,7 @@ class FaceQualityAssessor:
         """
         Estimates head yaw rotation from 5 canonical landmarks based on facial asymmetry.
         Frontal faces have yaw_ratio ~ 0.0 - 0.20.
-        Turned profile faces (> 35°) have yaw_ratio > 0.42.
+        Turned profile faces (> 35 deg) have yaw_ratio > 0.42.
         """
         if landmarks is None or len(landmarks) < 3:
             return 0.0
@@ -276,7 +276,7 @@ class FaceQualityAssessor:
             metrics["reason"] = f"Insufficient IPD ({ipd:.1f}px < {self.min_ipd}px for ArcFace)"
             return False, metrics
 
-        # 5. Pose / Yaw Check (reject profile faces > 35°)
+        # 5. Pose / Yaw Check (reject profile faces > 35 deg)
         if yaw_ratio > self.max_yaw_ratio:
             metrics["operational_zone"] = "DETECTION_ONLY"
             metrics["can_recognize"] = False
