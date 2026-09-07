@@ -74,7 +74,7 @@ def test_quality_assessor():
     assert meta["ipd"] == 40.0
     assert meta["yaw_ratio"] < 0.1
 
-    # 4. Extreme Profile Face (turned >35°): Must route to DETECTION_ONLY
+    # 4. Extreme Profile Face (turned >35 deg): Must route to DETECTION_ONLY
     profile_landmarks = np.array([
         [20, 35], [60, 35], [22, 55], [22, 75], [50, 75]  # nose is right next to left eye
     ], dtype=np.float32)

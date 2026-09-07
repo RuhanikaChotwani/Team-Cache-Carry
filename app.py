@@ -545,7 +545,7 @@ different fingerprint during integrity verification.
 
     return certificate
 # =========================================================
-# SESSION STORAGE — BLOCKCHAIN
+# SESSION STORAGE - BLOCKCHAIN
 # =========================================================
 if "blockchain" not in st.session_state:
     st.session_state.blockchain = load_blockchain()
@@ -621,11 +621,12 @@ total_evidence = len(st.session_state.evidence_records)
 
 if total_blocks == 0:
     chain_status = "Waiting for Records"
-    chain_symbol = "—"
+    chain_symbol = "-"
 else:
     is_valid, _ = validate_blockchain()
     chain_status = "Chain Intact" if is_valid else "Integrity Failed"
-    chain_symbol = "✓" if is_valid else "!"
+    chain_symbol = "[OK]" if is_valid else "[ERR]"
+
 
 
 dash1, dash2, dash3, dash4 = st.columns(4)
@@ -686,7 +687,7 @@ register_tab, verify_tab, audit_tab = st.tabs([
 
 
 # =========================================================
-# TAB 1 — SECURE EVIDENCE
+# TAB 1 - SECURE EVIDENCE
 # =========================================================
 with register_tab:
 
@@ -818,7 +819,7 @@ with register_tab:
 
 
 # =========================================================
-# TAB 2 — VERIFY EVIDENCE
+# TAB 2 - VERIFY EVIDENCE
 # =========================================================
 with verify_tab:
 
@@ -886,12 +887,12 @@ with verify_tab:
 
                 if current_hash == original_hash:
                     st.success(
-                        "AUTHENTIC EVIDENCE — The file matches the original "
+                        "AUTHENTIC EVIDENCE - The file matches the original "
                         "secured record."
                     )
                 else:
                     st.error(
-                        "TAMPERING DETECTED — The submitted file does not "
+                        "TAMPERING DETECTED - The submitted file does not "
                         "match the original evidence record."
                     )
 
@@ -907,7 +908,7 @@ with verify_tab:
 
 
 # =========================================================
-# TAB 3 — SECURITY AUDIT TRAIL
+# TAB 3 - SECURITY AUDIT TRAIL
 # =========================================================
 with audit_tab:
 
@@ -917,7 +918,7 @@ with audit_tab:
         "cryptographically to the block before it."
     )
         # =========================================================
-    # SECURITY DEMO — TAMPERING SIMULATION
+    # SECURITY DEMO - TAMPERING SIMULATION
     # =========================================================
     if len(st.session_state.blockchain) > 0:
 
@@ -931,9 +932,10 @@ with audit_tab:
 
         with demo_col1:
             if st.button(
-                "⚠️ Simulate Tampering (Demo)",
+                "Simulate Tampering (Demo)",
                 key="simulate_tampering"
             ):
+
                 # Modify only the in-memory blockchain.
                 # The saved JSON file remains unchanged.
                 st.session_state.blockchain[0]["event_id"] = (
@@ -948,7 +950,7 @@ with audit_tab:
                 }
 
                 st.warning(
-                    "DEMO ATTACK SIMULATED — A blockchain record has been "
+                    "DEMO ATTACK SIMULATED - A blockchain record has been "
                     "modified. Run blockchain validation to detect it."
                 )
 
@@ -1021,7 +1023,7 @@ with audit_tab:
 
         # Blockchain status
         st.success(
-            f"Blockchain active — {len(st.session_state.blockchain)} "
+            f"Blockchain active - {len(st.session_state.blockchain)} "
             f"evidence block(s) secured successfully."
         )
 
@@ -1035,11 +1037,11 @@ with audit_tab:
 
             if is_valid:
                 st.success(
-                    "BLOCKCHAIN VERIFIED — " + message
+                    "BLOCKCHAIN VERIFIED - " + message
                 )
             else:
                 st.error(
-                    "BLOCKCHAIN INTEGRITY FAILED — " + message
+                    "BLOCKCHAIN INTEGRITY FAILED - " + message
                 )
 
         # =====================================================
@@ -1083,6 +1085,6 @@ with audit_tab:
             # Visual connection between consecutive blocks
             if index < len(st.session_state.blockchain) - 1:
                 st.markdown(
-                    '<div class="chain-link">↓ ⛓ ↓</div>',
+                    '<div class="chain-link">| SHA-256 Link |</div>',
                     unsafe_allow_html=True
-                )
+                )

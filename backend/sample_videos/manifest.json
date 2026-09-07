@@ -1,0 +1,12 @@
+[
+  {
+    "filename": "vehicle_checkpoint.mp4",
+    "name": "Border Checkpoint FastALPR Feed",
+    "description": "Vehicle surveillance with ANPR and license plate recognition."
+  },
+  {
+    "filename": "perimeter_patrol.mp4",
+    "name": "Perimeter Patrol Optical Feed",
+    "description": "Multi-target person detection and perimeter surveillance."
+  }
+]

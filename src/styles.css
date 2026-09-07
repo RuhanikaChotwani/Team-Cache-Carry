@@ -26,6 +26,20 @@ button {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
 
 /* ===============================
    COLORS
@@ -188,46 +202,33 @@ nav {
 }
 
 
-.nav-link {
-
+.nav-link,
+.nav-item {
   display: flex;
-
   align-items: center;
-
   gap: 10px;
-
-  padding: 10px;
-
-  border-radius: 5px;
-
-  border-left:
-    2px solid transparent;
-
-  color: #7892ad;
-
+  padding: 10px 12px;
+  border-radius: 6px;
+  border-left: 3px solid transparent;
+  color: #8faec9;
   text-decoration: none;
-
-  font-size: 11px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.15s ease;
 }
 
-
-.nav-link:hover {
-
-  background: #07233b;
-
-  color: white;
-
+.nav-link:hover,
+.nav-item:hover {
+  background: #082844;
+  color: #ffffff;
 }
 
-
-.nav-link.active {
-
-  background: #07375b;
-
-  border-left-color:
-    var(--cyan);
-
-  color: white;
+.nav-link.active,
+.nav-item.active {
+  background: rgba(22, 185, 201, 0.14);
+  border-left-color: var(--cyan);
+  color: #ffffff;
+  font-weight: 600;
 }
 
 
